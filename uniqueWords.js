@@ -20,7 +20,6 @@ function unique(list) { // return unique items in a list
   return uniqueList
 }
 
-//
 const text = 'To compose two functions together, pass the output of the first function call as the input of the second function call.'
 
 let wordsFound = words(text)
@@ -40,12 +39,14 @@ wordsUsed = uniqueWords(text) // the output of all 3 of these are the same
 // let's define a helper fn to compose 2 functions together generically
 function compose2(fn2, fn1) {
   return function composed(origValue) {
-    return fn2(fn2(origValue))
+    return fn2(fn1(origValue))
   }
 }
 
 var uniqueWords2 = compose2(unique, words) // first class functions! aka functions can be treated like any other value
 
+uniqueWords2(text) // same output
+unique(words(text))
 // for any number of functions:
 function compose(...fns) {
   return function composed(result) {

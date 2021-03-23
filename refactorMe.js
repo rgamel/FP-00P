@@ -52,25 +52,27 @@ const employees = [
 ]
 const taxRate = 0.25
 
-const getTotalFamilySalaryAfterTax = () => {
-  let total = 0
-  
-  for (let i = 0; i < employees.length; i++) {
-    if (employees[i].isRelated === true ) {
-      const salary = employees[i].salary
-      const afterTaxSalary = salary * (1 - taxRate)
-      total += afterTaxSalary
-    }
-  }
-
-  const currencyConverter = new Intl.NumberFormat('en-us',
-    {style: 'currency', currency: 'USD'})
-  const totalAsUsd = currencyConverter.format(total)
-
-  incomeStore.setNetIncome(totalAsUsd)
+const getEmployeeSalaries = (employeeList) => {
+  // let total = 0
+  // const family = employeeList.filter(employee => employee.isRelated)
+  // for (let employee of family) {
+  //     total += employee.salary
+  // }
+  // return total
+  return employeeList.reduce((total, emp) => total += (emp.isRelated ? emp.salary : 0), 0)
 }
 
-// main
-getTotalFamilySalaryAfterTax()
+const getTotalFamilySalaryAfterTax = (employees) => {
+  const afterTaxSalary = getEmployeeSalaries(employees) * (1 - taxRate)
 
+  return Intl.NumberFormat('en-us',
+    {style: 'currency', currency: 'USD'}).format(afterTaxSalary)
+}
+
+
+// main
+incomeStore.setNetIncome(getTotalFamilySalaryAfterTax(employees))
 console.log(incomeStore.netIncome)
+
+// what a hypothetical unit test might look like
+// expect(getTotalFamilySalaryAfterTax(employees)).toEqual('$7,125,000.00')

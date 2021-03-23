@@ -27,7 +27,7 @@
 }
 
 { // more FP now
-  let otherVar = 0
+  let otherVar = { value: 0 }
 
   const increment = ({ value }) => ({ value: value += 1 })
 
@@ -46,6 +46,7 @@
         results.push(values)
       }
     }
+
     return results
   }
 
@@ -68,9 +69,9 @@
     }
   }
 
-  const gteCutoff = highPass(config.cutoff)
+  const gte3 = highPass(config.cutoff) // 3
 
-  const getFavesPure = (values) => values.filter(gteCutoff) // Writing functions without mention of the arguments is called point-free 
+  const getFavesPure = (values) => values.filter(gte3) // Writing functions without mention of the arguments is called point-free 
 
   console.log(
     getFavesPure(nums)
