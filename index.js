@@ -21,9 +21,9 @@
     someVar.value++
   }
 
-  incrementSomeVar()
+  incrementSomeValue()
 
-  console.log(someVar) // 1? are you sure? what if incrementSomeVar is being called somewhere else in the program?
+  console.log(someVar) // 1? are you sure? what if incrementSomeValue is being called somewhere else in the program?
 }
 
 { // more FP now
@@ -31,11 +31,11 @@
 
   const increment = ({ value }) => ({ value: value += 1 })
 
-  console.log(increment(someVar)) // we can be confident this is 1 because we created a new object with a value property of 1.
+  console.log(increment(otherVar)) // we can be confident this is 1 greater than otherVar was because we created a new object with a value property of 1.
 }
 
 { // side causes
-  const config = { cutoff = 3 }
+  const config = { cutoff: 3 }
   const nums = [1, 2, 3, 4]
 
   // no side effects, but one side cause: depending on config
@@ -48,18 +48,22 @@
     }
     return results
   }
-}
+
+  console.log(getFavesWithSideCause(nums))
+} // probably [3, 4]? unless something else set config.cutoff
+
 
 { // without side causes now
   const getFavesPure = (values, cutoff) => values.filter(v => v >= cutoff)
+
   console.log(
     getFavesPure(nums, config.cutoff)
   ) // [3, 4]
 }
 
 {  // refactor a bit
-  function highPass(cutoff) {
-    return function isGte(value) { // HOF -- returns a function
+  function highPass(cutoff) { // HOF -- returns a function
+    return function isGte(value) {
       return value >= cutoff
     }
   }

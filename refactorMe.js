@@ -1,3 +1,17 @@
+// Separate module, OO-style store for state and state-modifying methods
+class IncomeStore {
+  constructor(netIncome) {
+    this.netIncome = netIncome
+  }
+
+  setNetIncome = (value) => {
+    this.netIncome = value
+  }
+}
+
+const incomeStore = new IncomeStore()
+
+// some business logic in a separate file
 const employees = [
   {
     name: 'Johnny Rose',
@@ -45,12 +59,18 @@ const getTotalFamilySalaryAfterTax = () => {
     if (employees[i].isRelated === true ) {
       const salary = employees[i].salary
       const afterTaxSalary = salary * (1 - taxRate)
-      total = total + afterTaxSalary
+      total += afterTaxSalary
     }
   }
-  const currencyConverter = new Intl.NumberFormat('en-us', {style: 'currency', currency: 'USD'})
+
+  const currencyConverter = new Intl.NumberFormat('en-us',
+    {style: 'currency', currency: 'USD'})
   const totalAsUsd = currencyConverter.format(total)
-  console.log(totalAsUsd)
+
+  incomeStore.setNetIncome(totalAsUsd)
 }
 
+// main
 getTotalFamilySalaryAfterTax()
+
+console.log(incomeStore.netIncome)
