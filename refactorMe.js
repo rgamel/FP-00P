@@ -52,27 +52,26 @@ const employees = [
 ]
 const taxRate = 0.25
 
-const getEmployeeSalaries = (employeeList) => {
-  // let total = 0
-  // const family = employeeList.filter(employee => employee.isRelated)
-  // for (let employee of family) {
-  //     total += employee.salary
-  // }
-  // return total
-  return employeeList.reduce((total, emp) => total += (emp.isRelated ? emp.salary : 0), 0)
-}
+const getEmployeeSalaries = (employeeList) =>
+  employeeList.reduce((total, emp) =>
+    total += (emp.isRelated ? emp.salary : 0), 0)
 
-const getTotalFamilySalaryAfterTax = (employees) => {
-  const afterTaxSalary = getEmployeeSalaries(employees) * (1 - taxRate)
-
-  return Intl.NumberFormat('en-us',
-    {style: 'currency', currency: 'USD'}).format(afterTaxSalary)
-}
-
+const getTotalFamilySalaryAfterTax = (employees) => 
+  getEmployeeSalaries(employees) * (1 - taxRate) 
 
 // main
 incomeStore.setNetIncome(getTotalFamilySalaryAfterTax(employees))
-console.log(incomeStore.netIncome)
 
-// what a hypothetical unit test might look like
-// expect(getTotalFamilySalaryAfterTax(employees)).toEqual('$7,125,000.00')
+// after class ended, it occurred to me that
+// the conversion to USD was purely a presentational
+// concern. Therefore, the best place to do it was at the 
+// last possible second before it was pushed to the view
+// (the console in this case), hence the further refactor.
+const toUsd = (number) => Intl.NumberFormat('en-us',
+{style: 'currency', currency: 'USD'}).format(number)
+
+console.log(toUsd(incomeStore.netIncome))
+
+// what a hypothetical unit test suite might look like:
+// expect(getTotalFamilySalaryAfterTax(employees)).toEqual(7_125_000)
+// expect(toUsd(42)).toEqual($42.00)
