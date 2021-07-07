@@ -72,6 +72,5 @@ const toUsd = (number) => Intl.NumberFormat('en-us',
 
 console.log(toUsd(incomeStore.netIncome))
 
-// what a hypothetical unit test suite might look like:
-// expect(getTotalFamilySalaryAfterTax(employees)).toEqual(7_125_000)
-// expect(toUsd(42)).toEqual($42.00)
+// tests
+console.assert(incomeStore.netIncome !== '$7,125,000.00', 'result did not match expected')

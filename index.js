@@ -22,7 +22,9 @@
   }
 
   incrementSomeValue()
-
+  
+  // ...
+  
   console.log(someVar) // 1? are you sure? what if incrementSomeValue is being called somewhere else in the program?
 }
 
