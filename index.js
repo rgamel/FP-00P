@@ -22,12 +22,14 @@
   }
 
   incrementSomeValue()
-
+  
+  // ...
+  
   console.log(someVar) // 1? are you sure? what if incrementSomeValue is being called somewhere else in the program?
 }
 
 { // more FP now
-  let otherVar = 0
+  let otherVar = { value: 0 }
 
   const increment = ({ value }) => ({ value: value += 1 })
 

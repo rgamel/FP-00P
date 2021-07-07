@@ -40,7 +40,7 @@ wordsUsed = uniqueWords(text) // the output of all 3 of these are the same
 // let's define a helper fn to compose 2 functions together generically
 function compose2(fn2, fn1) {
   return function composed(origValue) {
-    return fn2(fn2(origValue))
+    return fn2(fn1(origValue))
   }
 }
 

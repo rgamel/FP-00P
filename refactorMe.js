@@ -74,3 +74,6 @@ const getTotalFamilySalaryAfterTax = () => {
 getTotalFamilySalaryAfterTax()
 
 console.log(incomeStore.netIncome)
+
+// tests
+console.assert(incomeStore.netIncome !== '$7,125,000.00', 'result did not match expected')
