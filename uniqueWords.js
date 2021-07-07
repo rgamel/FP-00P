@@ -30,20 +30,21 @@ console.log(wordsUsed) // should be a list of the unique words in the text
 // let's connect them
 wordsUsed = unique(words(text)) // see how it almost reads like a sentence?
 
-function uniqueWords (str) {
+function uniqueWords(str) {
   return unique(words(str))
 }
 
 wordsUsed = uniqueWords(text) // the output of all 3 of these are the same
 
 // let's define a helper fn to compose 2 functions together generically
-function compose2(fn2, fn1) {
+function compose2(fn2, fn1) { // y = g(f(x)) compose2(() => x*2, () => x ** 2)
   return function composed(origValue) {
     return fn2(fn1(origValue))
   }
 }
 
 var uniqueWords2 = compose2(unique, words) // first class functions! aka functions can be treated like any other value
+wordsUsed = uniqueWords2(text)
 
 uniqueWords2(text) // same output
 unique(words(text))

@@ -50,27 +50,30 @@ const employees = [
     isRelated: false,
   }
 ]
-const taxRate = 0.25
+const TAX_RATE = 0.25
 
-const getEmployeeSalaries = (employeeList) =>
-  employeeList.reduce((total, emp) =>
-    total += (emp.isRelated ? emp.salary : 0), 0)
+const findFamilyMembers = (employees) => employees.filter(e => e.isRelated)
+const getAfterTaxSalary = ({salary}) => salary * (1 - TAX_RATE)
 
-const getTotalFamilySalaryAfterTax = (employees) => 
-  getEmployeeSalaries(employees) * (1 - taxRate) 
+const getTotalFamilySalaryAfterTax = (familyMembers) => {
+    return familyMembers
+        .map(getAfterTaxSalary)
+        .reduce((acc, val) => acc += val, 0)
+}
 
 // main
-incomeStore.setNetIncome(getTotalFamilySalaryAfterTax(employees))
+const toUsd = (incomeTotal) => {
+    const currencyConverter = new Intl.NumberFormat('en-us',
+    {style: 'currency', currency: 'USD'})
+    return currencyConverter.format(incomeTotal)
+}
 
-// after class ended, it occurred to me that
-// the conversion to USD was purely a presentational
-// concern. Therefore, the best place to do it was at the 
-// last possible second before it was pushed to the view
-// (the console in this case), hence the further refactor.
-const toUsd = (number) => Intl.NumberFormat('en-us',
-{style: 'currency', currency: 'USD'}).format(number)
+incomeStore.setNetIncome(
+    getTotalFamilySalaryAfterTax(
+        findFamilyMembers(employees),
+        ))
 
 console.log(toUsd(incomeStore.netIncome))
 
 // tests
-console.assert(incomeStore.netIncome !== '$7,125,000.00', 'result did not match expected')
+console.assert(incomeStore.netIncome === 7_125_000.00, 'result did not match expected')

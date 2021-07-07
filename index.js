@@ -31,7 +31,10 @@
 { // more FP now
   let otherVar = { value: 0 }
 
-  const increment = ({ value }) => ({ value: value += 1 })
+  const increment = (x) => {
+    const value = x.value      
+    return { value: value += 1 }
+}
 
   console.log(increment(otherVar)) // we can be confident this is 1 greater than otherVar was because we created a new object with a value property of 1.
 }
@@ -42,14 +45,7 @@
 
   // no side effects, but one side cause: depending on config
   const getFavesWithSideCause = (values) => {
-    let results = []
-    for (value in values) {
-      if (value >= config.cutoff) {
-        results.push(values)
-      }
-    }
-
-    return results
+    return values.filter(v => v >= config.cutoff)
   }
 
   console.log(getFavesWithSideCause(nums))
