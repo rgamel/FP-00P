@@ -1,3 +1,6 @@
+// FUNCTION COMPOSITION CRASH COURSE
+
+// first, some functions:
 function words(str) { // returns words from a string in an array
   return String(str)
     .toLowerCase()
@@ -20,22 +23,24 @@ function unique(list) { // return unique items in a list
   return uniqueList
 }
 
-//
+// now, our text
 const text = 'To compose two functions together, pass the output of the first function call as the input of the second function call.'
 
+// OK, let's get composing
 let wordsFound = words(text)
 let wordsUsed = unique(wordsFound)
 
 console.log(wordsUsed) // should be a list of the unique words in the text
 
 // let's connect them
-wordsUsed = unique(words(text)) // see how it almost reads like a sentence?
+let wordsUsed = unique(words(text)) // see how it almost reads like a sentence?
 
+// we can define a function that returns the outpot of the above composition
 function uniqueWords (str) {
   return unique(words(str))
 }
 
-wordsUsed = uniqueWords(text) // the output of all 3 of these are the same
+let wordsUsed = uniqueWords(text) // the 3 values of wordsUsed are the same
 
 // let's define a helper fn to compose 2 functions together generically
 function compose2(fn2, fn1) {
@@ -44,7 +49,7 @@ function compose2(fn2, fn1) {
   }
 }
 
-var uniqueWords2 = compose2(unique, words) // first class functions! aka functions can be treated like any other value
+const uniqueWords2 = compose2(unique, words) // first class functions! aka functions can be treated like any other value
 
 // for any number of functions:
 function compose(...fns) {
