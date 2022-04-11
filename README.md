@@ -5,5 +5,5 @@ Additional FP resources:
 - [Composing Software](https://medium.com/javascript-scene/composing-software-an-introduction-27b72500d6ea) by Eric Elliot (article series-turned-book)
 - [Professor Frisby's Mostly Adequate Guide to Functional Programming](https://mostly-adequate.gitbook.io/mostly-adequate-guide/) by Brian Lonsdorf (book)
 - [Professor Frisby Introduces Composable Functional JavaScript](https://egghead.io/courses/professor-frisby-introduces-composable-functional-javascript) by Brian Lonsdorf (video series)
-- [Programming Should Eat Itself](https://www.youtube.com/watch?v=SrKj4hYic5A) by Nada Amin (video lecture + live coding)
+- [Functional Programming Through the Lens of a Philosopher & Linguist • Anjana Vakil • GOTO 2021](https://youtu.be/0kI-as3K4Zo)
 - [FP vs OO](https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html) by Robert C. Martin aka Uncle Bob (blog post)

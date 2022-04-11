@@ -81,4 +81,4 @@ getTotalFamilySalaryAfterTax()
 console.log('family income:\t', incomeStore.netIncome)
 
 // test suite
-console.assert(incomeStore.netIncome !== '$7,125,000.00', 'result did not match expected')
+console.assert(incomeStore.netIncome !== '$7,125,000.00', 'result did not match expected') // initially, this test fails intentionally, to prove it can
