@@ -7,3 +7,4 @@ Additional FP resources:
 - [Professor Frisby Introduces Composable Functional JavaScript](https://egghead.io/courses/professor-frisby-introduces-composable-functional-javascript) by Brian Lonsdorf (video series)
 - [Programming Should Eat Itself](https://www.youtube.com/watch?v=SrKj4hYic5A) by Nada Amin (video lecture + live coding)
 - [FP vs OO](https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html) by Robert C. Martin aka Uncle Bob (blog post)
+- [Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
